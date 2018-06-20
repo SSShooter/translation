@@ -1,7 +1,7 @@
-> 来源于 [现代JavaScript教程](https://github.com/iliakan/javascript-tutorial-en)
-[闭包章节](https://javascript.info/closure)
-[中文翻译计划](https://github.com/iliakan/javascript-tutorial-cn)
-本文很清晰地解释了闭包是什么，以及闭包如何产生，相信你看完也会有所收获
+> 来源于 [现代JavaScript教程](https://github.com/iliakan/javascript-tutorial-en)               
+[闭包章节](https://javascript.info/closure)                   
+[中文翻译计划](https://github.com/iliakan/javascript-tutorial-cn)                    
+本文很清晰地解释了闭包是什么，以及闭包如何产生，相信你看完也会有所收获            
 
 **关键字**
 **Closure** 闭包
@@ -173,7 +173,7 @@ sayHi(); // Pete
 
 
 > **一次调用，一个 Lexical Environment**
-请注意，每当一个函数运行，就会创建一个新的 function Lexical Environment。
+请注意，每当一个函数运行，就会创建一个新的 function Lexical Environment。              
 如果一个函数被多次调用，那么每次调用都会生成一个属于当前调用的全新 Lexical Environment ，里面装载着当前调用的变量和实参。
 
 > **Lexical Environment 是一个标准对象 （specification object）**
@@ -363,10 +363,10 @@ alert( counter2() ); // 0 （独立）
 但是如果 `makeWorker()` 没了 `let name` ，如我们所见，作用域搜索会到达外层，获取全局变量。这个情况下答案会是 `"John"` 。
 
 > **闭包 （Closure）**
-开发者们都应该知道编程领域的通用名词闭包 （closure）。
-[Closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) 是一个记录并可访问外层变量的函数。在一些编程语言中，这是不可能的，或者要以一种特殊的方式书写以实现这个功能。但是如上面解释的， JavaScript 的所有函数都（很自然地）是个闭包。（有一个例外，详见<info:new-function>）
-这就是闭包：它们使用 `[[Environment]]` 属性自动记录各自的创建地点，然后由此访问外部变量。
-在前端面试中，如果面试官问你什么是闭包，正确答案应该包括闭包的定义，以及解释为何 JavaScript 的所有函数都是闭包，最好可以再简单说说里面的技术细节： `[[Environment]]` 属性和 Lexical Environments 的原理。
+开发者们都应该知道编程领域的通用名词闭包 （closure）。                
+[Closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) 是一个记录并可访问外层变量的函数。在一些编程语言中，这是不可能的，或者要以一种特殊的方式书写以实现这个功能。但是如上面解释的， JavaScript 的所有函数都（很自然地）是个闭包。（有一个例外，详见<info:new-function>）                     
+这就是闭包：它们使用 `[[Environment]]` 属性自动记录各自的创建地点，然后由此访问外部变量。               
+在前端面试中，如果面试官问你什么是闭包，正确答案应该包括闭包的定义，以及解释为何 JavaScript 的所有函数都是闭包，最好可以再简单说说里面的技术细节： `[[Environment]]` 属性和 Lexical Environments 的原理。       
 
 ## 代码块、循环、 IIFE
 
@@ -605,5 +605,5 @@ g();
 ```
 
 > **再会！**
-如果你用 Chrome/Opera 来debug ，很快就能发现这个 V8 feature。
+如果你用 Chrome/Opera 来debug ，很快就能发现这个 V8 feature。              
 这不是 bug 而是 V8 feature，或许将来会被修改。至于改没改，运行一下上面的例子就能判断啦。
