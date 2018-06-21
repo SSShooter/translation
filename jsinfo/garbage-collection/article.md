@@ -12,37 +12,22 @@ JavaScript 内存管理的关键概念是*可触及（Reachability）*。
 
 简单来说，“可触及”的值就是可访问的，可用的。他们被安全储存在内存。
 
-1. There's a base set of inherently reachable values, that cannot be deleted for obvious reasons.
+1. 以下是一些必定“可触及”的值，不管出于任何原因，都不能删除：
 
-    For instance:
+    - 当前函数的局部变量和参数。
+    - 当前调用链（current chain of nested calls）中所有函数的局部变量和参数。
+    - 全局变量。
+    - （以及其他内部变量）
 
-    - Local variables and parameters of the current function.
-    - Variables and parameters for other functions on the current chain of nested calls.
-    - Global variables.
-    - (there are some other, internal ones as well)
+    这些值都称为 *roots*。
 
-    These values are called *roots*.
+2. 其他值是否可触及视乎它是否被 root 及其引用链引用。
 
-1. There's a base set of inherently reachable values, that cannot be deleted for obvious reasons.
+    假设有一个对象存在于局部变量，它的值引用了另一个对象，如果这个对象是可触及的，则它引用的对象也是可触及的，后面会有详细例子。
 
-    For instance:
+JavaScript 引擎有一个 [垃圾回收](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) 后台进程。它监控着所有对象，当对象不可触及时会将其删除。
 
-    - Local variables and parameters of the current function.
-    - Variables and parameters for other functions on the current chain of nested calls.
-    - Global variables.
-    - (there are some other, internal ones as well)
-
-    These values are called *roots*.
-
-2. Any other value is considered reachable if it's reachable from a root by a reference of by a chain of references.
-
-    For instance, if there's an object in a local variable, and that object has a property referencing another object, that object is considered reachable. And those that it references -- are also reachable. Detailed examples to follow.
-
-There's a background process in the JavaScript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that became unreachable.
-
-## A simple example
-
-Here's the simplest example:
+## 一个简单例子
 
 ```js
 // user has a reference to the object
@@ -53,9 +38,9 @@ let user = {
 
 ![](memory-user-john.png)
 
-Here the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
+箭头代表的是对象引用。全局变量 `"user"` 引用了对象`{name: "John"}`（简称此对象为 John）。John 的 `"name"` 属性储存的是一个原始值，所以无其他引用。
 
-If the value of `user` is overwritten, the reference is lost:
+如果覆盖 `user`，对 John 的引用就丢失了：
 
 ```js
 user = null;
@@ -63,11 +48,11 @@ user = null;
 
 ![](memory-user-john-lost.png)
 
-Now John becomes unreachable. There's no way to access it, no references to it. Garbage collector will junk the data and free the memory.
+现在 John 变得不可触及，垃圾回收机制会将其删除并释放内存。
 
-## Two references
+## 两个引用
 
-Now let's imagine we copied the reference from `user` to `admin`:
+如果我们从 `user` 复制引用到 `admin`：
 
 ```js
 // user has a reference to the object
@@ -82,16 +67,16 @@ let admin = user;
 
 ![](memory-user-john-admin.png)
 
-Now if we do the same:
+如果重复一次这个操作：
 ```js
 user = null;
 ```
 
-...Then the object is still reachable via `admin` global variable, so it's in memory. If we overwrite `admin` too, then it can be removed.
+……这个对象是依然可以通过 `admin` 访问的，所以它依然存在于内存。如果我们把 `admin` 也覆盖为 null，那它就会被删除了。
 
-## Interlinked objects
+## 相互引用的对象
 
-Now a more complex example. The family:
+这个例子比较复杂：
 
 ```js
 function marry(man, woman) {
@@ -111,15 +96,11 @@ let family = marry({
 });
 ```
 
-Function `marry` "marries" two objects by giving them references to each other and returns a new object that contains them both.
-
-The resulting memory structure:
+`marry` 函数让两个参数对象互相引用，返回一个包含两者的新对象，结构如下：
 
 ![](family.png)
 
-As of now, all objects are reachable.
-
-Now let's remove two references:
+暂时所有对象都是可触及的，但我们现在决定移除两个引用：
 
 ```js
 delete family.father;
@@ -128,100 +109,90 @@ delete family.mother.husband;
 
 ![](family-delete-refs.png)
 
-It's not enough to delete only one of these two references, because all objects would still be reachable.
-
-But if we delete both, then we can see that John has no incoming reference any more:
+只删除一个引用不会有什么影响，但是两个引用同时删除，我们可以看到 John 已经不被任何对象引用了：
 
 ![](family-no-father.png)
 
-Outgoing references do not matter. Only incoming ones can make an object reachable. So, John is now unreachable and will be removed from the memory with all its data that also became unaccessible.
+即使 John 还在引用别人，但是他不被别人引用，所以 John 现在已经是不可触及的了，它的存在将会被移除。
 
-After garbage collection:
+垃圾回收后：
 
 ![](family-no-father-2.png)
 
-## Unreachable island
+## 孤岛（Unreachable island)
 
-It is possible that the whole island of interlinked objects becomes unreachable and is removed from the memory.
+也可能有一大堆互相引用的对象整块（像个孤岛）都不可触及了。
 
-The source object is the same as above. Then:
+对上面的对象进行操作：
 
 ```js
 family = null;
 ```
 
-The in-memory picture becomes:
+内存中的情况如下：
 
 ![](family-no-family.png)
 
-This example demonstrates how important the concept of reachability is.
+这个例子展示了“可触及”这个概念的重要性。
 
-It's obvious that John and Ann are still linked, both have incoming references. But that's not enough.
+尽管 John 和 Ann 互相依赖，但这仍不足够。
 
-The former `"family"` object has been unlinked from the root, there's no reference to it any more, so the whole island becomes unreachable and will be removed.
+`"family"` 对象整个已经切断了与 root 的连接，没有任何东西引用到这里，所以这个孤岛遥不可及，只能等待被删除。
 
-## Internal algorithms
+## 内部算法
 
-The basic garbage collection algorithm is called "mark-and-sweep".
+基础的垃圾回收算法被称为“标记-清除算法”（"mark-and-sweep"）：
 
-Regularly the following "garbage collection" steps are performed:
+- 垃圾回收器获取并标记 root。
+- 然后访问并标记来自他们的所有引用。
+- 访问被标记的对象，标记*他们的*引用。所有被访问过的对象都会被记录，以后将不会重复访问同一对象。
+- ……直到只剩下未访问的引用。
+- 所有未被标记的对象都会被移除。
 
-- The garbage collector takes roots and "marks" (remembers) them.
-- Then it visits and "marks" all references from them.
-- Then it visits marked objects and marks *their* references. All visited objects are remembered, not to visit the same object twice in the future.
-- ...And so on until there are unvisited references (reachable from the roots).
-- All objects except marked ones are removed.
-
-For instance, let our object structure look like this:
+假设对象结构如下：
 
 ![](garbage-collection-1.png)
 
-We can clearly see an "unreachable island" to the right side. Now let's see how "mark-and-sweep" garbage collector deals with it.
+我们清晰地看到右边的“孤岛”。现在使用“标记-清除”的方法处理他。
 
-The first step marks the roots:
+第一步，标记 root：
 
 ![](garbage-collection-2.png)
 
-Then their references are marked:
+然后标记他们的引用：
 
 ![](garbage-collection-3.png)
 
-...And their refences, while possible:
+……标记他们引用的引用：
 
 ![](garbage-collection-4.png)
 
-Now the objects that could not be visited in the process are considered unreachable and will be removed:
+现在没有被访问过的对象会被认为是不可触及，他们将会被删除：
 
 ![](garbage-collection-5.png)
 
-That's the concept how garbage collection works.
+这就是垃圾回收的工作原理。
 
-JavaScript engines apply many optimizations to make it run faster and not affect the execution.
+JavaScript 引擎在不影响执行的情况下做了很多优化，使这个过程更垃圾回收效率更高：
 
-Some of the optimizations:
+- **分代收集** -- 对象会被分为“新生代”和“老生代”。很多对象完成任务后很快就不再需要了，所以对于他们的清理可以很频繁。而在清理中留下的称为“老生代”一员。
+- **增量收集** -- 如果对象很多，很难一次标记完所有对象，这个过程甚至对程序执行产生了明显的延迟。所以引擎会尝试把这个操作分割成多份，每次执行一份。这样做要记录额外的数据，但是可以有效降低延迟对用户体验的影响。
+- **闲时收集** -- 垃圾回收器尽量只在 CPU 空闲时运行，减少对程序执行的影响。
 
-- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". Many objects appear, then do their job and die fast, so they can be cleaned up aggressively. Those that survive for long enough, become "old".
-- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine tries to split the job into pieces. Then pieces are executed one at a time. That requires some extra bookkeeping between them to track changes.
-- **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
+除此以外还有很多对垃圾回收的优化，在此就不详细说了，各个引擎有自己的调整和技术，而且这个东西一直随着引擎的更新换代在改变，如果不是有实在的需求，不值得挖太深。不过如果你真的对此有浓厚的兴趣，下面会为你提供一些拓展链接。
 
-There are other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques.
+## 总结
 
-And -- what's even more important, things change as engines develop, so going really deep "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
+重点：
 
-## Summary
+- 垃圾回收自动进行，我们不能强制进行或阻止他。
+- 可触及的对象会被保留在内存中。
+- 被引用不一定是可触及的（从 root）：相互引用的对象可能整块都是不可触及的。
 
-The main things to know:
+现代引擎实现了加强版的垃圾回收算法，《The Garbage Collection Handbook: The Art of Automatic Memory Management》（R. Jones 等）一书中提及了他们。
 
-- Garbage collection is performed automatically. We cannot force or prevent it.
-- Objects are retained in memory while they are reachable.
-- Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole.
+如果你熟悉底层编程，可以阅读 [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection) 了解更多关于 V8 垃圾回收的细节。
 
-Modern engines implement advanced algorithms of garbage collection.
+[V8 blog](http://v8project.blogspot.com/) 也会经常发布一些关于内存管理的文章。学习垃圾回收算法最好还是先学习 V8 的实现，阅读 [Vyacheslav Egorov（V8 工程师之一）的博客](http://mrale.ph)。我说 V8 是因为在互联网上关于 V8 的文章比较多。对于其他引擎，很多实现都是相似的，但是垃圾回收算法上区别不少。
 
-A general book "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones at al) covers some of them.
-
-If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection). 
-
-[V8 blog](http://v8project.blogspot.com/) also publishes articles about changes in memory management from time to time. Naturally, to learn the garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of V8 engineers. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects. 
-
-In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.  
+对引擎的深入理解在做底层优化的时候很有帮助。在你熟悉一门语言之后，这是一个明智的研究方向。
