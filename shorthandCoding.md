@@ -1,5 +1,5 @@
-原文：[19+ JavaScript Shorthand Coding Techniques](https://www.sitepoint.com/shorthand-javascript-techniques/)                     
-本文原链接：https://segmentfault.com/a/1190000011229633
+> 原文：[19+ JavaScript Shorthand Coding Techniques](https://www.sitepoint.com/shorthand-javascript-techniques/)                     
+> 本文原链接：https://segmentfault.com/a/1190000011229633
 # 1 使用三目运算符
 使用三目运算符，可以更简洁地把if else写成一行
 ```JavaScript
