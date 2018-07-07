@@ -1,4 +1,4 @@
-# Class inheritance, super
+# Class 继承与 super
 
 class 可以 extends 自另一个 class。这是一个不错的语法，技术上基于原型继承。
 
@@ -512,8 +512,7 @@ Note, there's no link between `Date` and `Object`. Both `Object` and `Date` exis
 由于历史原因，这种差异是存在的：在JavaScript语言曙光之前，没有想过类语法和继承静态方法。
 Such difference exists for historical reasons: there was no thought about class syntax and inheriting static methods at the dawn of JavaScript language.
 
-## 拓展原生
-## Natives are extendable
+## 原生拓展
 
 Array，Map 等内置类也可以扩展。
 
