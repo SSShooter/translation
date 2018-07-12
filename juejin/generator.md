@@ -103,43 +103,43 @@ Passing arguments to the next()
 
 #### Explanation:
 
-1.  When we call the **_first next(20)_**, every line of code till the first yield is printed. As we do not have any previous yield expression this value 20 is discarded. In the output we get yield value as i*10, which is 100 here. Also the state of the execution stops with first yield and the **_const j_** is not yet set.
-2.  The second **_next(10)_** call, replaces the entire first yield expression with 10, imagine **_yield (i * 10) = 10,_** which goes on to set the value of **_const j to 50_** before returning the second yield’s value. The yield value here is **_2 * 50 / 4 = 25_**.
-3.  Third **_next(5)_**, replaces the entire second yield with 5, bringing the value of k to 5. And further continues to execute return statement and return **_(x + y + z) => (10 + 50 + 5) = 65_** as the final yield value along with done true.
+1. 在调用 **next(20)** 的时候，第一个 yield 前的代码都被执行。因为没有前一个 yield，传入的 20 相当于毫无效果。输出 yield 的 value 为 i*10，也就是 100。因为执行在第一个 yield 停止，所以 **const j** 未被赋值。
+2. 调用 **next(10)** 时，第一个 yield 的位置被替换为 10，相当于在返回第二个 yield 的 value 前，设置 **yield (i * 10) = 10,**，所以 **j 为 50**。yield 的 value 为 **2 * 50 / 4 = 25**。
+3. **next(5)** 用 5 替换第二个 yield，所以 k 为 5。继续执行 return 语句，返回最后的 yield value **(x + y + z) => (10 + 50 + 5) = 65**，并且 done 为 true。
 
-> **This might be bit overwhelming for the first time readers, but take a good 5 minutes to read it over and over again to understand completely.**
+> **这可能对初次接触 generator 的读者有点超纲，但是给自己 5 分钟，多读几遍，就能清楚明白。**
 
-### Passing Yield as an Argument of a Function
+### Yield 作为其他函数的参数
 
-There are n-number of use-cases surrounding yield regarding how it can be used inside a function generator. Let’s look at the code below for one such interesting usage of yield, along with the explanation.
+Yield 在 generator 中还有大把的用法，我们接着看看下面的代码，这是 yield 的其中一个妙用，附带解释。
 
 ![](https://cdn-images-1.medium.com/max/800/1*Y6pwTwJ7stPZzAeCKBfv4Q.png)
 
-Yield as an argument of a function
+Yield 作为其他函数的参数
 
-#### Explanation
+#### 解释
 
-1.  The first next() yields undefined value because yield expression has no value.
-2.  The second next() yields “I am usless”, the value which was passed. And prepares argument for function call.
-3.  The third next(), calls the function with an **_undefined_** argument. As mentioned above, the next() method called without any arguments essentially means that the **_entire previous yield expression is undefined_**. Hence, this prints **_undefined_** and finishes the run.
+1.  第一个 next() yield（生成） 的 value 为 undefined，因为 yield 表达式无值。
+2.  第二个 next() 生成的 value 为被传入的 `'I am usless'`，这一步为函数调用准备了参数。
+3.  第二个 next() 以 **undefined** 为参数调用了后面的函数。next() 没有接收参数，意味着**上一个 yield 表达式的值为 undefined**，所以函数打印出 **undefined** 并终止运行。
 
-### Yield with a Function Call
+### 对函数调用使用 yield
 
-Apart from returning values yield can also call functions and return the value or print the same. Let’s look at the code below and understand better.
+除了返回普通的值，yield 还可以调用函数并返回他的值。看看下面的例子更好理解：
 
 ![](https://cdn-images-1.medium.com/max/800/1*zXpsq-hlqla3z3mZGWyTJw.png)
 
-Yield calling a function
+对函数调用使用 yield
 
-The code above returns the function’s return obj as the yield value. And ends the run by setting **_undefined_** to the **_const user_**.
+上述代码返回了函数返回的对象作为 yield 的 value，然后把 **const user** 赋值为 **undefined**，结束运行。
 
-### Yield with Promises
+### 对 Promise 使用 yield
 
-Yield with promises follows the same approach as the function call above, instead of returning a value from the function, it returns a promise which can be evaluated further for success or failure. Let’s look at the code below to understand how it works.
+对 promise 使用 yield 与对函数调用使用 yield 相似，它会返回一个 promise，我们以此进一步判定操作成功或失败。看看以下代码，了解它的使用方法：
 
 ![](https://cdn-images-1.medium.com/max/800/1*100c_wLxJHmcKtjZAYwJzw.png)
 
-Yield with promises
+对 Promise 使用 yield
 
 The apiCall returns the promises as the yield value, when resolved after 2 seconds prints the value we need.
 
