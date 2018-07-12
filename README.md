@@ -5,4 +5,5 @@ English 2 Chinese Translation
 - [JavaScriptInfo 系列-闭包](./jsinfo/closure/article.md)
 - [JavaScriptInfo 系列-可迭代对象](./jsinfo/iterable/article.md)
 - [JavaScriptInfo 系列-垃圾回收](./jsinfo/garbage-collection/article.md)
+- [JavaScriptInfo 系列-Class 继承与 super](./jsinfo/super/publish.md)
 - [Mongoose 中文文档](https://github.com/ssshooter/mongoose-doc-cn)
