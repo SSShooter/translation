@@ -5,7 +5,7 @@
 > * 译者：
 > * 校对者：
 
-# Javascript（ES6）Generator 简单指南
+# Javascript（ES6）Generator 入门
 
 ![](https://cdn-images-1.medium.com/max/800/1*4877k4Hq9dPdtmvg9hnGFA.jpeg)
 
