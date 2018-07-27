@@ -78,40 +78,37 @@ Many individuals are intelligent, but many problems are dumb, so intelligent ind
 
 当然，大多数客户还是理智的，但他们往往因为缺乏相关知识，无法清晰表达他们的需求。但这没问题，因为这是我“计算机专业人员”工作的一部分，帮助人们根据他们的使用场景，判断他们的软件需要或不需要什么。但是当你和客户之间隔着很多人，这样做会变得十分困难。
 
-大多数公司喜欢雇佣销售人员安利潜在客户，协商价格并概述这个价格可以得到什么功能。他们有 [people person](https://www.youtube.com/watch?v=hNuu9CpdjIo) 与客户讨论更多深度要求和细节，其实他们也算是销售人员，只是职位名称不同，或者马槽的种类。然后是内部的指挥链，各级管理层以及技术团队内部的层级结构。
-Most companies like having a sales guy that pitches potential customers, negotiates prices and outlines the features that could be included given said prices. They have a [people person](https://www.youtube.com/watch?v=hNuu9CpdjIo) discuss more in depth requirements and details with the customer, usually also a sales guy, but with a slightly different title, or a manger of sorts. Then there’s the internal facing chain of command, various levels of management and possibly some hierarchy within the technical team.
+大多数公司喜欢雇佣销售人员安利潜在客户，协商价格并概述这个价格可以得到什么功能。他们有 [people person](https://www.youtube.com/watch?v=hNuu9CpdjIo) 与客户讨论更多深度要求和细节，其实他们也算是销售人员，只是职位名称不同。接着是内部领导层的意见，多级管理层以及技术团队内部的层级结构。
 
-当需求经历这么多人时，即使这些人有最好的意图，一些事情也会发生变化。有些事情可能会因为没有意义而改变，因为定义是愚蠢的，所以需要重新定义。销售人员可能会说“只有39,999额外的我们可以在区块链上做到这一点”......让其他所有人都明白了“在区块链上做什么”的意思。
+需求经历这么多人，即使这些人有最好的意图，一些事情也会发生变化。有些事情可能会因为没有意义而改变，因为定义是愚蠢的，所以需要重新定义。销售人员可能会说“只要多付 39999，我们就可以在区块链上实现这个功能”……让其他所有人都明白了“在区块链上做什么”的意思。
 When requirements go through so many people, even if those people have the best of intentions, some things will get changed. Some things might get changed because they make no sense, they need to be redefined because the definition is stupid. The sales guy might have said “For only 39,999 extra we can do this on the Blockchain”… leaving everyone else down the line of define what the hell “doing it on the Blockchain” means.
 
-虽然通常情况下需求会发生变化，因为有人误解了某些事情，或者因为有人使用上述应对机制来使他的工作或团队的工作更有趣和令人印象深刻。
-Though more often than not, requirements get changed because someone either misunderstood something or because someone was using the aforementioned coping mechanism to make his job or the job of his team more interesting and impressive.
+所以通常需求变化的原因有两点，在多级传递中有人误解了某些事情，或者有人使用上述应对机制来使他或团队的工作更有趣和令人印象深刻。
 
-因此，原始要求，必须解决的真正问题，在转录中丢失。它们被假想的问题和空洞所取代，你已经有很多人准备并愿意用他们自己想象的问题填补这些空白，因为他们必须解决的问题很无聊，并填补空白给他们一个**应对方式**。
+因此，真正要求，必须解决的真正问题，在各级传达中丢失。并被假想的问题和一些空缺所取代，你已经有很多人准备并愿意用他们自己想象的问题填补这些空白，因为他们必须解决的问题很无聊，并填补空白给他们一个**应对方式**。
 So the original requirements, the real problems that have to be solved, get lost in transcription. They are replaced with imaginary problems and with voids, and you’ve got plenty of people ready and willing to fill those voids with their own imaginary problems, because the problems they have to solve are boring, and filling the voids gives them a **way of coping**.
 
 ### 过度复杂和自然选择
 ### Overcomplexity and natural selection
 
-通常情况下，存在虚构问题的原因甚至更为明显，它们有助于团队或公司的成长，并成为其功能中不可或缺的一部分。
+通常情况下，存在虚构问题更深层的原因是，它们有助于团队或公司的成长，并成为其功能中不可或缺的一部分。
 Often enough, there’s an even darker reason for the existence of imaginary problems, they help a team or a company grow and they become an integral part of its function.
 
 > 培养，选择和补偿以找到复杂解决方案的人没有动力去实施简化的解决方案。 - 塔勒布
 > People who are bred, selected and compensated to find complicated solutions do not have an incentive to implement simplified ones. — Taleb
 
-您是否听说过这三位工程师发现网上银行实际上是一个非常容易的问题？他们使用功能设计方法和内存安全语言从头开发了一些完美无瑕的银行软件，然后开始将主要银行迁移到他们惊人的基础设施。
+您是否听说过，只需要三位工程师就能搭建网上银行系统？他们使用功能设计方法和内存安全语言，从头开发了一些完美无瑕的银行软件，然后开始将主要银行迁移到他们惊人的基础设施。
 Have you ever heard about those three engineers that figured out online banking is actually quite an easy problem ? They developed some flawless banking software from scratch, using a functional design methodology and memory safe languages, then started migrating major banks to their amazing infrastructure.
 
-可能不是，因为它们不存在。然而，有成千上万的团队[成千上万的开发人员，无法掌握简单的概念，如“回滚”]（https://www.theguardian.com/business/2018/apr/28/warning-signs-for- tsbs-it-meltdown-a-a-year-ago-insider），永远创建银行软件。
+可能没听过，因为根本不存在。然而，有成千上万的团队[成千上万的开发人员，无法掌握简单的概念，如“回滚”]（https://www.theguardian.com/business/2018/apr/28/warning-signs-for- tsbs-it-meltdown-a-a-year-ago-insider），无休止地创建银行软件。
 Probably not, because they don’t exist. There are however, plenty of teams of [thousands of developers, that are unable to grasp simple concepts such “rollbacks”](https://www.theguardian.com/business/2018/apr/28/warning-signs-for-tsbs-it-meltdown-were-clear-a-year-ago-insider), perpetually creating banking software.
 
-这不是因为数字的存储和传输是一个特别难的问题。索引互联网的整个内容并从其中提供自然语言查询的相关结果，在第二次，是一个难题，[但只有少数聪明的人设法解决它]（https://en.wikipedia.org /维基/ History_of_Google）。
-That’s not because the storage and transfer of numbers is a particularly hard problem. Indexing the whole content of the internet and providing relevant results to natural language queries from it, in sub second times, is a hard problem, [but just a few smart guys managed to solve it](https://en.wikipedia.org/wiki/History_of_Google).
+数字的存储和传输的技术要求并不高。建立整个互联网的索引，在 2 秒内提供问题搜索结果才是一个难题，[只有少数聪明人去想方设法解决这个问题](https://en.wikipedia.org/wiki/History_of_Google)。
 
 不，问题是银行生态系统已经变得非常善于保持无人机存活。一台运行良好的机器意味着保留自己的钱财等级。它的领导者是[腐败的浸出]（https://en.wikipedia.org/wiki/Ben_Bernanke），它掠夺社会，但组织中的领导者只是其成员的一个症状。
 No, the problems is that the banking ecosystem has become really good at keeping its drones alive. A well oiled machine meant to preserve its own money grabbing hierarchy. Its leaders are [corrupt leaches](https://en.wikipedia.org/wiki/Ben_Bernanke) that prey on society, but the leaders in an organizations are just a symptom of its members.
 
-我不会建议大多数为银行工作的下属都是邪恶的或恶意的。远非如此，他们通常是友善的小伙伴，致力于为家人提供食物，住所和教育。但他们的主要动机不是修复银行软件，他们的主要动机就是保持就业。在今天的经济中失去工作对某些人来说并不是一件令人开玩笑的事情......一个大嘴巴或太多的主动性很容易让你发现自己在银行业的纪律委员会面前。
+我的意思不是在银行工作的人都是坏人。相反，他们通常是很友善，致力于为家人提高生活质量。但他们要的不是修复银行软件，而是保持就业。在今天的经济中失去工作对某些人来说并不是一件令人开玩笑的事情......一个大嘴巴或太多的主动性很容易让你发现自己在银行业的纪律委员会面前。
 I wouldn’t suggest most underling working for banks are evil or malicious in any way. Far from it, they are usually friendly lads, working to provide food, shelter and an education for their families. But their chief incentive is not fixing the banking software, their chief incentive is staying employed. Losing your job in today’s economy is no joking matter for some… and a big mouth or too much initiative is an easy way find yourself in front of a disciplinary committee in the banking industry.
 
 所以银行业仍然是相同的，不是因为它有效，而是因为它有惯性。这种惯性以处理想象问题的形式出现，以避免解决实际问题。曾经指出的真正的问题会威胁到其他人的工作。这可能会导致你被解雇，或者像高盛这样一些特别令人讨厌的“机构”，[给一些联邦调查局官员发送一些棕色信封，毁掉你的整个生命或让你做出一个奇怪的自杀。 ]（https://en.wikipedia.org/wiki/Sergey_Aleynikov）
