@@ -2,8 +2,7 @@
 > * 原文作者：[George](https://medium.com/@george3d6?source=post_header_lockup)
 > * 译文出自：[掘金翻译计划](https://github.com/xitu/gold-miner)
 > * 本文永久链接：[https://github.com/xitu/gold-miner/blob/master/TODO1/imaginary-problems.md](https://github.com/xitu/gold-miner/blob/master/TODO1/imaginary-problems.md)
-> * 译者：
-> * 校对者：
+> * 译者：[ssshooter](https://github.com/ssshooter)
 
 > 译者的胡说八道：初看标题以为这是一篇产品文，但是仔细阅读下来发现这甚至是一片社科文（大概是吧？）。虽然标题提到了“低质量软件”，但是必须注意本文的核心还是前面的**虚构问题**，这四个字贯穿整篇文章。感觉外国作者写的文章思维真的挺发散的...而且这篇文章还涉及到的事件和隐喻，导致我这渣渣英文水平真的翻译得很辛苦（哭）。虚构问题，虽然现在我还没进什么大厂，但是也确实遇到过类似的事情呢...并且感觉大厂是不是确实也如文中所说的呢？（某手机扣扣功能这么繁杂是不是也是这个原因呢？）引人思考，甚至只针对工作，对于人生中的很多事情，大概也是这个思路吧。
 
